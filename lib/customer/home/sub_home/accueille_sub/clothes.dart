@@ -50,7 +50,7 @@ class _ClothesState extends State<Clothes> {
                   
                 ),
                 ),
-                ),
+                ), 
                 Container(
                   height: phoneHeight*0.4,
                   width: phoneWidth,
