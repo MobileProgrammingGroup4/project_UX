@@ -1,97 +1,149 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class Vetements extends StatefulWidget {
+
+  const Vetements({ Key? key }) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Vetements> createState() => _VetementsState();
 }
 
-class _HomeState extends State<Home> {
-  bool hasBeenTapped = false;
+class _VetementsState extends State<Vetements> {
 
-  List<Map> product = [
+   bool hasBeenTapped = false;
+
+   List<Map> clothes = [
     {
-      "name": "Carrot",
-      "category": "Vegetable",
-      "price": 200,
-      "quantity": "3",
-      "avatar": "image/market.jpeg"
+      "name": "Air force 1",
+      "category": "clothes",
+      "price": 10200,
+      //
+      "vendor":"Frank",
+      "avatar": "image/T-shirt.jpeg"
     },
     {
-      "name": "Tomato",
-      "category": "Vegetable",
+      "name": "Air force 1",
+      "category": "clothes",
       "price": 225,
-      "quantity": "3",
-      "avatar": "image/market.jpeg"
+      
+      "vendor":"tourtue noir",
+      "avatar": "image/T-shirt.jpeg"
     },
     {
-      "name": "Red peper",
-      "category": "Vegetable",
-      "price": 26,
-      "quantity": "3",
-      "avatar": "image/market.jpeg"
+      "name": "Landalouse",
+      "category": "clothes",
+      "price": 26000,
+      
+      "vendor":"sakaki",
+      "avatar": "image/talon.jpeg"
     },
     {
-      "name": "Green peper",
-      "category": "Vegetable",
-      "price": 22,
-      "quantity": "3",
-      "avatar": "image/market.jpeg"
+      "name": "Pantoufle",
+      "category": "clothes",
+      "price": 2200,
+      
+      "vendor":"susaku",
+      "avatar": "image/jupe.jpeg"
     },
     {
       "name": "Yellow peper",
-      "category": "Vegetable",
+      "category": "clothes",
       "price": 22,
-      "quantity": "3",
-      "avatar": "image/market.jpeg"
+      
+      "vendor":"JOJO",
+      "avatar": "image/T-shirt.jpeg"
     },
     {
       "name": "Blue peper",
-      "category": "Vegetable",
+      "category": "clothes",
       "price": 22,
-      "quantity": "3",
-      "avatar": "image/market.jpeg"
+      
+      "vendor":"Guts",
+      "avatar": "image/T-shirt.jpeg"
     },
     {
       "name": "Pink peper",
-      "category": "Vegetable",
+      "category": "clothes",
       "price": 22,
-      "quantity": "3",
-      "avatar": "image/market.jpeg"
+      
+      "vendor":"Pinky",
+      "avatar": "image/T-shirt.jpeg"
     },
     {
       "name": "orange peper",
-      "category": "Vegetable",
+      "category": "clothes",
       "price": 22,
-      "quantity": "3",
-      "avatar": "image/market.jpeg"
+      
+      "vendor":"Darel",
+      "avatar": "image/T-shirt.jpeg"
     },
     {
       "name": "black peper",
-      "category": "Vegetable",
+      "category": "clothes",
       "price": 22,
-      "quantity": "3",
-      "avatar": "image/market.jpeg"
+      
+      "vendor":"michelle",
+      "avatar": "image/T-shirt.jpeg"
     },
     {
       "name": "glod peper",
-      "category": "Vegetable",
+      "category": "clothes",
       "price": 22,
-      "quantity": "3",
-      "avatar": "image/market.jpeg"
+      
+      "vendor":"yuiji",
+      "avatar": "image/T-shirt.jpeg"
     },
     {
       "name": "Pink peper",
-      "category": "Vegetable",
+      "category": "clothes",
       "price": 22,
-      "quantity": "3",
-      "avatar": "image/market.jpeg"
+      
+      "vendor":"fujihara",
+      "avatar": "image/T-shirt.jpeg"
+    },
+    {
+      "name": "Mini",
+      "category": "clothes",
+      "price": 2200,
+      
+      "vendor":"susaku",
+      "avatar": "image/jupe.jpeg"
+    },
+    {
+      "name": "Jupe",
+      "category": "clothes",
+      "price": 2200,
+      
+      "vendor":"susaku",
+      "avatar": "image/jupe.jpeg"
+    },
+    {
+      "name": "2Face",
+      "category": "clothes",
+      "price": 2200,
+      
+      "vendor":"susaku",
+      "avatar": "image/jupe.jpeg"
+    },
+    {
+      "name": "Fante",
+      "category": "clothes",
+      "price": 2200,
+      
+      "vendor":"susaku",
+      "avatar": "image/jupe.jpeg"
     },
   ];
 
-  @override
-  Widget build(BuildContext context) {
+  
+
+   @override
+   Widget build(BuildContext context) {
+
+    var mediaQuery = MediaQuery.of(context);
+    var phoneHeight = mediaQuery.size.height;
+    var phoneWidth = mediaQuery.size.width;
+
     int rest(int b) {
       int left = 0;
       left = b - 7;
@@ -119,36 +171,22 @@ class _HomeState extends State<Home> {
         return i;
       }
     }
-
-    var mediaQuery = MediaQuery.of(context);
-    var phoneHeight = mediaQuery.size.height;
-    var phoneWidth = mediaQuery.size.width;
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(''),
-        elevation: 0,
-      ),
-      body: SingleChildScrollView(
-          child: Center(
-        child: Container(
-          margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
-          decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-          child: Column(
-            children: [
-              GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+       return Scaffold(
+           //appBar: AppBar(title: const Text(''),),
+           body: 
+              ListView.builder(
+                scrollDirection: Axis.horizontal,
+               // physics: NeverScrollableScrollPhysics(),
+               // shrinkWrap: true,
+                /*gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.7,
                   mainAxisSpacing: 25.0,
                   crossAxisSpacing: 25.0,
-                ),
-                itemCount: counter(hasBeenTapped, product.length),
+                ),*/
+                itemCount: counter(hasBeenTapped, clothes.length),
                 itemBuilder: (BuildContext context, int index) {
-                  return index == indet(hasBeenTapped, product.length)
+                  return index == indet(hasBeenTapped, clothes.length)
                       ? GestureDetector(
                           onTap: () {
                             print('have been tapped');
@@ -157,13 +195,16 @@ class _HomeState extends State<Home> {
                             });
                           },
                           child: Container(
+                            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                            height: phoneHeight*0.5,
+                            width: phoneWidth*0.6,
                             // height: 200,
                             // width: double.infinity,
                             decoration: BoxDecoration(
                               color: Colors.grey.shade200,
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
-                                image: AssetImage(product[index]['avatar']),
+                                image: AssetImage(clothes[index]['avatar']),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -173,7 +214,7 @@ class _HomeState extends State<Home> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "+" + rest(product.length).toString(),
+                                    "+" + rest(clothes.length).toString(),
                                     style: TextStyle(
                                         color: Color(0xffFEDD1F),
                                         fontFamily: 'Poppins',
@@ -197,13 +238,16 @@ class _HomeState extends State<Home> {
                         )
                       : GestureDetector(
                           onTap: () {
-                            /*String selected = product[index]['name']['category']
+                            /*String selected = clothes[index]['name']['category']
                                 ['price']['quantity']['avatar'].toString();*/
 
                             // print(selected);
-                            print(product[index]['name']);
+                            print(clothes[index]['name']);
                           },
                           child: Container(
+                            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                            height: phoneHeight*0.5,
+                            width: phoneWidth*0.6,
                             alignment: Alignment.bottomLeft,
                             // height: 200,
                             // width: double.infinity,
@@ -214,16 +258,14 @@ class _HomeState extends State<Home> {
                               color: Colors.grey.shade200,
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
-                                image: AssetImage(product[index]['avatar']),
+                                image: AssetImage(clothes[index]['avatar']),
                                 fit: BoxFit.cover,
                               ),
                             ),
                             child: Text(
-                              product[index]['name'] +
+                              clothes[index]['name'] +
                                   ", " +
-                                  product[index]['quantity'] +
-                                  " for " +
-                                  product[index]['price'].toString(),
+                                  clothes[index]['price'].toString(),
                               //style: Theme.of(context).textTheme.headline5,
                               style: const TextStyle(
                                 fontSize: 25,
@@ -234,10 +276,7 @@ class _HomeState extends State<Home> {
                         );
                 },
               ),
-            ],
-          ),
-        ),
-      )),
-    );
+            
+       );
   }
 }

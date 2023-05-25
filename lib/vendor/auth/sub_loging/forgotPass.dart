@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -33,16 +34,39 @@ class _ForgotPassState extends State<ForgotPass> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Center(
+      body:Container(
+        constraints: BoxConstraints.expand(),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(
+                'image/market.jpeg',
+              ),
+              fit: BoxFit.cover),
+        ),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 1.5, sigmaY: 1.5),
+          child: Center (
+        child: SingleChildScrollView(
           child: Column(
             children: [
-              const Text("LookAm"),
+              const Text("LookAm",
+              style: TextStyle(
+                fontSize: 35,
+                color: Colors.white,
+                fontWeight: FontWeight.bold
+              ),
+              ),
               Form(
                 key: _formkey,
                 child: Column(
                   children: [
-                    TextFormField(
+                    Container(
+                      padding: const EdgeInsets.all(30),
+                      child: TextFormField(
+                         style:const TextStyle(
+                                    color: Color.fromARGB(255, 253, 253, 253)
+                                  ),
+                                  cursorColor: Colors.white,
                        controller: phoneCtl,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
@@ -63,13 +87,14 @@ class _ForgotPassState extends State<ForgotPass> {
                           labelStyle: const TextStyle(
                             color: Colors.white,
                           ),
-                          enabledBorder: OutlineInputBorder(
+                         /* enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                               borderSide: const BorderSide(
                                 width: 1,
                                 color: Colors.white,
-                              )),
+                              )),*/
                         ),
+                         
                         onChanged: (value) => setState(() => num = value),
                         validator: (value) {
                           if (value!.isEmpty || !phoneRegx.hasMatch(value)) {
@@ -79,28 +104,40 @@ class _ForgotPassState extends State<ForgotPass> {
                           return null;
                         },
                     ),
-                    TextFormField(
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: TextFormField(
+                         style:const TextStyle(
+                                    color: Color.fromARGB(255, 253, 253, 253)
+                                  ),
+                                  cursorColor: Colors.white,
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
+                      decoration:const InputDecoration(
                         labelText: 'Enter the code you received',
-                          labelStyle: const TextStyle(
+                          labelStyle:  TextStyle(
                             color: Colors.white,
                           ),
-                          enabledBorder: OutlineInputBorder(
+                          /*enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                               borderSide: const BorderSide(
                                 width: 1,
                                 color: Colors.white,
-                              )),
+                              )),*/
                         ),
                       ),
-                      ElevatedButton(
+                    ),
+                     Container(
+                      width: 200,
+                      margin:const EdgeInsets.only(top:30),
+                      child:  ElevatedButton(
                         onPressed: (){
                           if(_formkey.currentState!.validate()){
                             print("is ok");
                           }
                         },
-                        child: const Text("Submit"))
+                        child: const Text("Submit")),
+                     )
                   ],
                 )
                 )
@@ -108,6 +145,8 @@ class _ForgotPassState extends State<ForgotPass> {
           ),
         ),
       ),
+        ),
+      )
     );
   }
 }

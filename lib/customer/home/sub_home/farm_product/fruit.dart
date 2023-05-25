@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class Fruit extends StatefulWidget {
+
+  const Fruit({ Key? key }) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Fruit> createState() => _FruitState();
 }
 
-class _HomeState extends State<Home> {
-  bool hasBeenTapped = false;
+class _FruitState extends State<Fruit> {
+bool hasBeenTapped = false;
 
-  List<Map> product = [
+   List<Map> fruit = [
     {
       "name": "Carrot",
       "category": "Vegetable",
       "price": 200,
       "quantity": "3",
+      "vendor":"Frank",
       "avatar": "image/market.jpeg"
     },
     {
@@ -23,6 +25,7 @@ class _HomeState extends State<Home> {
       "category": "Vegetable",
       "price": 225,
       "quantity": "3",
+      "vendor":"tourtue noir",
       "avatar": "image/market.jpeg"
     },
     {
@@ -30,6 +33,7 @@ class _HomeState extends State<Home> {
       "category": "Vegetable",
       "price": 26,
       "quantity": "3",
+      "vendor":"sakaki",
       "avatar": "image/market.jpeg"
     },
     {
@@ -37,6 +41,7 @@ class _HomeState extends State<Home> {
       "category": "Vegetable",
       "price": 22,
       "quantity": "3",
+      "vendor":"susaku",
       "avatar": "image/market.jpeg"
     },
     {
@@ -44,6 +49,7 @@ class _HomeState extends State<Home> {
       "category": "Vegetable",
       "price": 22,
       "quantity": "3",
+      "vendor":"JOJO",
       "avatar": "image/market.jpeg"
     },
     {
@@ -51,6 +57,7 @@ class _HomeState extends State<Home> {
       "category": "Vegetable",
       "price": 22,
       "quantity": "3",
+      "vendor":"Guts",
       "avatar": "image/market.jpeg"
     },
     {
@@ -58,6 +65,7 @@ class _HomeState extends State<Home> {
       "category": "Vegetable",
       "price": 22,
       "quantity": "3",
+      "vendor":"Pinky",
       "avatar": "image/market.jpeg"
     },
     {
@@ -65,6 +73,7 @@ class _HomeState extends State<Home> {
       "category": "Vegetable",
       "price": 22,
       "quantity": "3",
+      "vendor":"Darel",
       "avatar": "image/market.jpeg"
     },
     {
@@ -72,6 +81,7 @@ class _HomeState extends State<Home> {
       "category": "Vegetable",
       "price": 22,
       "quantity": "3",
+      "vendor":"michelle",
       "avatar": "image/market.jpeg"
     },
     {
@@ -79,6 +89,7 @@ class _HomeState extends State<Home> {
       "category": "Vegetable",
       "price": 22,
       "quantity": "3",
+      "vendor":"yuiji",
       "avatar": "image/market.jpeg"
     },
     {
@@ -86,12 +97,20 @@ class _HomeState extends State<Home> {
       "category": "Vegetable",
       "price": 22,
       "quantity": "3",
+      "vendor":"fujihara",
       "avatar": "image/market.jpeg"
     },
   ];
 
-  @override
-  Widget build(BuildContext context) {
+  
+
+   @override
+   Widget build(BuildContext context) {
+
+    var mediaQuery = MediaQuery.of(context);
+    var phoneHeight = mediaQuery.size.height;
+    var phoneWidth = mediaQuery.size.width;
+
     int rest(int b) {
       int left = 0;
       left = b - 7;
@@ -119,36 +138,22 @@ class _HomeState extends State<Home> {
         return i;
       }
     }
-
-    var mediaQuery = MediaQuery.of(context);
-    var phoneHeight = mediaQuery.size.height;
-    var phoneWidth = mediaQuery.size.width;
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(''),
-        elevation: 0,
-      ),
-      body: SingleChildScrollView(
-          child: Center(
-        child: Container(
-          margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
-          decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-          child: Column(
-            children: [
-              GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+       return Scaffold(
+           //appBar: AppBar(title: const Text(''),),
+           body: 
+              ListView.builder(
+                scrollDirection: Axis.horizontal,
+               // physics: NeverScrollableScrollPhysics(),
+               // shrinkWrap: true,
+                /*gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.7,
                   mainAxisSpacing: 25.0,
                   crossAxisSpacing: 25.0,
-                ),
-                itemCount: counter(hasBeenTapped, product.length),
+                ),*/
+                itemCount: counter(hasBeenTapped, fruit.length),
                 itemBuilder: (BuildContext context, int index) {
-                  return index == indet(hasBeenTapped, product.length)
+                  return index == indet(hasBeenTapped, fruit.length)
                       ? GestureDetector(
                           onTap: () {
                             print('have been tapped');
@@ -157,13 +162,16 @@ class _HomeState extends State<Home> {
                             });
                           },
                           child: Container(
+                            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                            height: phoneHeight*0.5,
+                            width: phoneWidth*0.6,
                             // height: 200,
                             // width: double.infinity,
                             decoration: BoxDecoration(
                               color: Colors.grey.shade200,
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
-                                image: AssetImage(product[index]['avatar']),
+                                image: AssetImage(fruit[index]['avatar']),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -173,7 +181,7 @@ class _HomeState extends State<Home> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "+" + rest(product.length).toString(),
+                                    "+" + rest(fruit.length).toString(),
                                     style: TextStyle(
                                         color: Color(0xffFEDD1F),
                                         fontFamily: 'Poppins',
@@ -197,13 +205,16 @@ class _HomeState extends State<Home> {
                         )
                       : GestureDetector(
                           onTap: () {
-                            /*String selected = product[index]['name']['category']
+                            /*String selected = fruit[index]['name']['category']
                                 ['price']['quantity']['avatar'].toString();*/
 
                             // print(selected);
-                            print(product[index]['name']);
+                            print(fruit[index]['name']);
                           },
                           child: Container(
+                            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                            height: phoneHeight*0.5,
+                            width: phoneWidth*0.6,
                             alignment: Alignment.bottomLeft,
                             // height: 200,
                             // width: double.infinity,
@@ -214,16 +225,16 @@ class _HomeState extends State<Home> {
                               color: Colors.grey.shade200,
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
-                                image: AssetImage(product[index]['avatar']),
+                                image: AssetImage(fruit[index]['avatar']),
                                 fit: BoxFit.cover,
                               ),
                             ),
                             child: Text(
-                              product[index]['name'] +
+                              fruit[index]['name'] +
                                   ", " +
-                                  product[index]['quantity'] +
+                                  fruit[index]['quantity'] +
                                   " for " +
-                                  product[index]['price'].toString(),
+                                  fruit[index]['price'].toString(),
                               //style: Theme.of(context).textTheme.headline5,
                               style: const TextStyle(
                                 fontSize: 25,
@@ -234,10 +245,7 @@ class _HomeState extends State<Home> {
                         );
                 },
               ),
-            ],
-          ),
-        ),
-      )),
-    );
+            
+       );
   }
 }

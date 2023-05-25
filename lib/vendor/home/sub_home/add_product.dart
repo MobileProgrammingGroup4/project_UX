@@ -22,50 +22,54 @@ class _AddProductState extends State<AddProduct> {
     var phoneWidth = mediaQuery.size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(''),
+        elevation: 0,
+        centerTitle: true,
+        title: const Text('Add Product'),
       ),
-      body: SingleChildScrollView(
+      body: Center(
+        child: SingleChildScrollView(
         child: Form(
             key: _formkey,
             child: Center(
               child: Column(
                 children: [
-                  TextFormField(
+                  Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                  child: TextFormField(
                     onChanged: (value) => setState(() => productName = value),
                     validator: (value) =>
                         value!.isEmpty ? 'pleas the name of a product' : null,
                     decoration: InputDecoration(
                       labelText: 'product Name',
-                      labelStyle: const TextStyle(
-                        color: Colors.white,
-                      ),
+                     
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: const BorderSide(
                             width: 1,
-                            color: Colors.white,
+                           // color: Colors.white,
                           )),
                     ),
                   ),
-                  TextFormField(
+                  ),
+                  Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                  child: TextFormField(
                     onChanged: (value) => setState(() => category = value),
                     validator: (value) => value!.isEmpty
                         ? 'What is the category of the product'
                         : null,
                     decoration: InputDecoration(
                       labelText: 'product category',
-                      labelStyle: const TextStyle(
-                        color: Colors.white,
-                      ),
+                     
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: const BorderSide(
                             width: 1,
-                            color: Colors.white,
+                          //  color: Colors.white,
                           )),
                     ),
                   ),
-                  TextFormField(
+                  ),
+                  Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                  child: TextFormField(
                     keyboardType: TextInputType.number,
                     onChanged: (value) => setState(() => productName = value),
                     validator: (value) => value!.isEmpty
@@ -73,41 +77,48 @@ class _AddProductState extends State<AddProduct> {
                         : null,
                     decoration: InputDecoration(
                       labelText: 'product Price',
-                      labelStyle: const TextStyle(
-                        color: Colors.white,
-                      ),
+                     
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: const BorderSide(
                             width: 1,
-                            color: Colors.white,
+                           // color: Colors.white,
                           )),
                     ),
                   ),
-                  TextFormField(
+                  ),
+                  Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                  child: TextFormField(
                     onChanged: (value) => setState(() => quantity = value),
                     validator: (value) =>
                         value!.isEmpty ? 'What is the quantity for that price' : null,
                     decoration: InputDecoration(
                       labelText: 'Quantity',
-                      labelStyle: const TextStyle(
-                        color: Colors.white,
-                      ),
+                      
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: const BorderSide(
                             width: 1,
-                            color: Colors.white,
+                            //color: Colors.white,
                           )),
                     ),
                   ),
-                  Container(
-                    height: 200,
-                    width: 160,
-                    color: Colors.pinkAccent,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(20),
+                  Container(
+                    width: 200,
+                    child: ElevatedButton(onPressed: (){}, child: const Text('Upload image')),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical:20),
+                    height: phoneHeight*0.5,
+                    width: phoneWidth*0.6,
+                    decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+                color: Color.fromARGB(255, 8, 82, 143),
+              ),
+                  ),
+                  Container(
+                    width: 200,
                     child: ElevatedButton(
                         onPressed: () {
                           print(productName);
@@ -118,6 +129,7 @@ class _AddProductState extends State<AddProduct> {
               ),
             )),
       ),
+      )
     );
   }
 }

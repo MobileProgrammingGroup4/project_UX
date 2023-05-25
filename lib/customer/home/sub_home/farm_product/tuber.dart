@@ -1,97 +1,117 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class Tuber extends StatefulWidget {
+
+  const Tuber({ Key? key }) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Tuber> createState() => _TuberState();
 }
 
-class _HomeState extends State<Home> {
+class _TuberState extends State<Tuber> {
+
   bool hasBeenTapped = false;
 
-  List<Map> product = [
+   List<Map> tuber = [
     {
       "name": "Carrot",
       "category": "Vegetable",
       "price": 200,
       "quantity": "3",
-      "avatar": "image/market.jpeg"
+      "vendor":"Frank",
+      "avatar": "image/pomme.jpeg"
     },
     {
       "name": "Tomato",
       "category": "Vegetable",
       "price": 225,
       "quantity": "3",
-      "avatar": "image/market.jpeg"
+      "vendor":"tourtue noir",
+      "avatar": "image/pomme.jpeg"
     },
     {
       "name": "Red peper",
       "category": "Vegetable",
       "price": 26,
       "quantity": "3",
-      "avatar": "image/market.jpeg"
+      "vendor":"sakaki",
+      "avatar": "image/pomme.jpeg"
     },
     {
       "name": "Green peper",
       "category": "Vegetable",
       "price": 22,
       "quantity": "3",
-      "avatar": "image/market.jpeg"
+      "vendor":"susaku",
+      "avatar": "image/pomme.jpeg"
     },
     {
       "name": "Yellow peper",
       "category": "Vegetable",
       "price": 22,
       "quantity": "3",
-      "avatar": "image/market.jpeg"
+      "vendor":"JOJO",
+      "avatar": "image/pomme.jpeg"
     },
     {
       "name": "Blue peper",
       "category": "Vegetable",
       "price": 22,
       "quantity": "3",
-      "avatar": "image/market.jpeg"
+      "vendor":"Guts",
+      "avatar": "image/pomme.jpeg"
     },
     {
       "name": "Pink peper",
       "category": "Vegetable",
       "price": 22,
       "quantity": "3",
-      "avatar": "image/market.jpeg"
+      "vendor":"Pinky",
+      "avatar": "image/pomme.jpeg"
     },
     {
       "name": "orange peper",
       "category": "Vegetable",
       "price": 22,
       "quantity": "3",
-      "avatar": "image/market.jpeg"
+      "vendor":"Darel",
+      "avatar": "image/pomme.jpeg"
     },
     {
       "name": "black peper",
       "category": "Vegetable",
       "price": 22,
       "quantity": "3",
-      "avatar": "image/market.jpeg"
+      "vendor":"michelle",
+      "avatar": "image/pomme.jpeg"
     },
     {
       "name": "glod peper",
       "category": "Vegetable",
       "price": 22,
       "quantity": "3",
-      "avatar": "image/market.jpeg"
+      "vendor":"yuiji",
+      "avatar": "image/pomme.jpeg"
     },
     {
       "name": "Pink peper",
       "category": "Vegetable",
       "price": 22,
       "quantity": "3",
-      "avatar": "image/market.jpeg"
+      "vendor":"fujihara",
+      "avatar": "image/pomme.jpeg"
     },
   ];
 
-  @override
-  Widget build(BuildContext context) {
+  
+
+   @override
+   Widget build(BuildContext context) {
+
+    var mediaQuery = MediaQuery.of(context);
+    var phoneHeight = mediaQuery.size.height;
+    var phoneWidth = mediaQuery.size.width;
+
     int rest(int b) {
       int left = 0;
       left = b - 7;
@@ -119,36 +139,22 @@ class _HomeState extends State<Home> {
         return i;
       }
     }
-
-    var mediaQuery = MediaQuery.of(context);
-    var phoneHeight = mediaQuery.size.height;
-    var phoneWidth = mediaQuery.size.width;
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(''),
-        elevation: 0,
-      ),
-      body: SingleChildScrollView(
-          child: Center(
-        child: Container(
-          margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
-          decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-          child: Column(
-            children: [
-              GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+       return Scaffold(
+           //appBar: AppBar(title: const Text(''),),
+           body: 
+              ListView.builder(
+                scrollDirection: Axis.horizontal,
+               // physics: NeverScrollableScrollPhysics(),
+               // shrinkWrap: true,
+                /*gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.7,
                   mainAxisSpacing: 25.0,
                   crossAxisSpacing: 25.0,
-                ),
-                itemCount: counter(hasBeenTapped, product.length),
+                ),*/
+                itemCount: counter(hasBeenTapped, tuber.length),
                 itemBuilder: (BuildContext context, int index) {
-                  return index == indet(hasBeenTapped, product.length)
+                  return index == indet(hasBeenTapped, tuber.length)
                       ? GestureDetector(
                           onTap: () {
                             print('have been tapped');
@@ -157,13 +163,16 @@ class _HomeState extends State<Home> {
                             });
                           },
                           child: Container(
+                            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                            height: phoneHeight*0.5,
+                            width: phoneWidth*0.6,
                             // height: 200,
                             // width: double.infinity,
                             decoration: BoxDecoration(
                               color: Colors.grey.shade200,
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
-                                image: AssetImage(product[index]['avatar']),
+                                image: AssetImage(tuber[index]['avatar']),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -173,7 +182,7 @@ class _HomeState extends State<Home> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "+" + rest(product.length).toString(),
+                                    "+" + rest(tuber.length).toString(),
                                     style: TextStyle(
                                         color: Color(0xffFEDD1F),
                                         fontFamily: 'Poppins',
@@ -197,13 +206,16 @@ class _HomeState extends State<Home> {
                         )
                       : GestureDetector(
                           onTap: () {
-                            /*String selected = product[index]['name']['category']
+                            /*String selected = tuber[index]['name']['category']
                                 ['price']['quantity']['avatar'].toString();*/
 
                             // print(selected);
-                            print(product[index]['name']);
+                            print(tuber[index]['name']);
                           },
                           child: Container(
+                            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                            height: phoneHeight*0.5,
+                            width: phoneWidth*0.6,
                             alignment: Alignment.bottomLeft,
                             // height: 200,
                             // width: double.infinity,
@@ -214,16 +226,16 @@ class _HomeState extends State<Home> {
                               color: Colors.grey.shade200,
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
-                                image: AssetImage(product[index]['avatar']),
+                                image: AssetImage(tuber[index]['avatar']),
                                 fit: BoxFit.cover,
                               ),
                             ),
                             child: Text(
-                              product[index]['name'] +
+                              tuber[index]['name'] +
                                   ", " +
-                                  product[index]['quantity'] +
+                                  tuber[index]['quantity'] +
                                   " for " +
-                                  product[index]['price'].toString(),
+                                  tuber[index]['price'].toString(),
                               //style: Theme.of(context).textTheme.headline5,
                               style: const TextStyle(
                                 fontSize: 25,
@@ -234,10 +246,7 @@ class _HomeState extends State<Home> {
                         );
                 },
               ),
-            ],
-          ),
-        ),
-      )),
-    );
+            
+       );
   }
 }

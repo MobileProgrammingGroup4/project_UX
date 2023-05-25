@@ -95,9 +95,9 @@ class _SignupState extends State<Signup> {
                         value!.isEmpty ? 'pleas enter your name' : null,
                     decoration: InputDecoration(
                       labelText: 'Enter your Name',
-                      labelStyle: const TextStyle(
-                        color: Colors.white,
-                      ),
+                     // labelStyle: const TextStyle(
+                     //   color: Colors.white,b
+                     // ),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: const BorderSide(
@@ -125,12 +125,12 @@ class _SignupState extends State<Signup> {
                         onTap: () => setState(() => _isSecrect = !_isSecrect),
                         child: Icon(
                           !_isSecrect ? Icons.visibility : Icons.visibility_off,
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 253, 251, 251),
                         ),
                       ),
                       labelText: 'Enter your password',
                       labelStyle: const TextStyle(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 248, 247, 247),
                       ),
                     ),
                     onChanged: (value) => setState(() => pass = value),
@@ -158,12 +158,12 @@ class _SignupState extends State<Signup> {
                         onTap: () => setState(() => _isSecrect = !_isSecrect),
                         child: Icon(
                           !_isSecrect ? Icons.visibility : Icons.visibility_off,
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 252, 251, 251),
                         ),
                       ),
                       labelText: 'Confirm password',
                       labelStyle: const TextStyle(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 253, 253, 253),
                       ),
                     ),
                     onChanged: (value) => setState(() => confpass = value),
@@ -209,13 +209,13 @@ class _SignupState extends State<Signup> {
                           ),
                           labelText: 'Enter your phone number',
                           labelStyle: const TextStyle(
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 17, 17, 17),
                           ),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                               borderSide: const BorderSide(
                                 width: 1,
-                                color: Colors.white,
+                                color: Color.fromARGB(255, 19, 18, 18),
                               )),
                         ),
                         onChanged: (value) => setState(() => num = value),
@@ -244,13 +244,13 @@ class _SignupState extends State<Signup> {
                         decoration: InputDecoration(
                           labelText: 'Enter the code you receive',
                           labelStyle: const TextStyle(
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 15, 15, 15),
                           ),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                               borderSide: const BorderSide(
                                 width: 1,
-                                color: Colors.white,
+                                color: Color.fromARGB(255, 15, 15, 15),
                               )),
                         ),
                         onChanged: (value) => setState(() => hidedCode = value),
@@ -283,13 +283,13 @@ class _SignupState extends State<Signup> {
                     decoration: InputDecoration(
                       labelText: 'Enter your Name',
                       labelStyle: const TextStyle(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 10, 10, 10),
                       ),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: const BorderSide(
                             width: 1,
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 10, 10, 10),
                           )),
                     ),
                   ),
@@ -307,13 +307,13 @@ class _SignupState extends State<Signup> {
                     decoration: InputDecoration(
                       labelText: 'Enter your Name',
                       labelStyle: const TextStyle(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 248, 248, 248),
                       ),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: const BorderSide(
                             width: 1,
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 12, 12, 12),
                           )),
                     ),
                   ),
@@ -331,13 +331,13 @@ class _SignupState extends State<Signup> {
                     decoration: InputDecoration(
                       labelText: 'Enter your Name',
                       labelStyle: const TextStyle(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 15, 15, 15),
                       ),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: const BorderSide(
                             width: 1,
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 12, 12, 12),
                           )),
                     ),
                   ),
@@ -355,13 +355,13 @@ class _SignupState extends State<Signup> {
                     decoration: InputDecoration(
                       labelText: 'Enter your date of birth',
                       labelStyle: const TextStyle(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 17, 17, 17),
                       ),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: const BorderSide(
                             width: 1,
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 15, 15, 15),
                           )),
                     ),
                   ),
@@ -379,18 +379,18 @@ class _SignupState extends State<Signup> {
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
-                'image/market.jpg',
+                'image/shop.jpeg',
               ),
               fit: BoxFit.cover),
         ),
         child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+            filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
             child: Center(
               child: Theme(
                 data: Theme.of(context).copyWith(
                     backgroundColor: Color.fromRGBO(2, 4, 3, 0),
                     colorScheme: ColorScheme.light(
-                        primary: Color.fromARGB(255, 228, 131, 245))),
+                        primary: Color.fromARGB(255, 41, 96, 158))),
                 child: Stepper(
                   margin: EdgeInsets.only(top: 10, left: 50),
                   elevation: 0,
