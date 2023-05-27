@@ -40,6 +40,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   image_picker: ^0.8.7+5
   translator: ^0.1.7
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +79,9 @@ flutter:
     - image/T-shirt.jpeg
     - image/talon.jpeg
     - image/viande.jpeg
+    - image/car.jpg
+    - image/iamgroth.jpg
+    - image/pub.jpeg
 
   #   - images/a_dot_ham.jpeg
 

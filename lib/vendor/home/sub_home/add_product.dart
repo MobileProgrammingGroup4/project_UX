@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddProduct extends StatefulWidget {
   const AddProduct({Key? key}) : super(key: key);
@@ -15,6 +18,59 @@ class _AddProductState extends State<AddProduct> {
   late String price;
   late String quantity;
 
+   XFile? image1;
+
+  final ImagePicker picker = ImagePicker();
+
+  Future getImage(ImageSource media) async {
+    var img = await picker.pickImage(source: media);
+
+    setState(() {
+      image1 = img;
+    });
+  }
+  void myAlert() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            title: const Text('Please choose media to select'),
+            content: Container(
+              height: MediaQuery.of(context).size.height / 6,
+              child: Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      getImage(ImageSource.gallery);
+                    },
+                    child: Row(
+                      children: const [
+                        Icon(Icons.image),
+                        Text('From Gallery'),
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      getImage(ImageSource.camera);
+                    },
+                    child: Row(
+                      children: const [
+                        Icon(Icons.camera),
+                        Text('From Camera'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
@@ -104,25 +160,54 @@ class _AddProductState extends State<AddProduct> {
                     ),
                   ),
                   ),
-                  Container(
-                    width: 200,
-                    child: ElevatedButton(onPressed: (){}, child: const Text('Upload image')),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(vertical:20),
-                    height: phoneHeight*0.5,
-                    width: phoneWidth*0.6,
-                    decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(30)),
-                color: Color.fromARGB(255, 8, 82, 143),
-              ),
-                  ),
+                 ElevatedButton(
+                  onPressed: () {
+                    myAlert();
+                  },
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    // side:const BorderSide(color: Colors.red)
+                  ))),
+                  child: const Text('Upload Product image'),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                //if image not null show the image
+                //if image null show text
+                image1 != null
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.file(
+                            //to show image, you type like this.
+                            File(image1!.path),
+                            fit: BoxFit.cover,
+                            width: MediaQuery.of(context).size.width,
+                            height: phoneHeight * 0.3,
+                          ),
+                        ),
+                      )
+                    : const Text(
+                        "No Image",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                 
                   Container(
                     width: 200,
                     child: ElevatedButton(
                         onPressed: () {
                           print(productName);
                         },
+                        style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    // side:const BorderSide(color: Colors.red)
+                  ))),
                         child: const Text("Submit")),
                   )
                 ],

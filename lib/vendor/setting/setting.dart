@@ -14,7 +14,10 @@ class _SettingState extends State<Setting> {
    Widget build(BuildContext context) {
        return Scaffold(
            appBar: AppBar(title: const Text(''),),
-           body: Container(),
+           body: Container(
+            height: 400,
+            color: Colors.blueAccent,
+           ),
        );
   }
 }

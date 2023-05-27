@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'sub_modefierDeleter/modifycomplet.dart';
 
 class ModifierDelete extends StatefulWidget {
   const ModifierDelete({Key? key}) : super(key: key);
@@ -23,8 +24,8 @@ class _ModifierDeleteState extends State<ModifierDelete> {
     var phoneWidth = mediaQuery.size.width;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: const Text(''),
+        backgroundColor: Color.fromARGB(0, 155, 154, 154),
+        title: const Text('Modify Product'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -33,10 +34,23 @@ class _ModifierDeleteState extends State<ModifierDelete> {
               margin: const EdgeInsets.only(top: 15),
               height: phoneHeight * 0.5,
               width: phoneWidth * 0.6,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                color: Color.fromARGB(255, 8, 82, 143),
-              ),
+              alignment: Alignment.bottomLeft,
+              decoration: BoxDecoration(
+                              color: Colors.grey.shade200,
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                image: AssetImage("image/legume_carotte.jpeg"),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            child: Text(" $productName , $quantity for $price",
+                               
+                              //style: Theme.of(context).textTheme.headline5,
+                              style: const TextStyle(
+                                fontSize: 25,
+                                color: Colors.white,
+                              ),
+                            ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
@@ -51,6 +65,12 @@ class _ModifierDeleteState extends State<ModifierDelete> {
                             isForModify = true;
                           });
                         },
+                        style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    // side:const BorderSide(color: Colors.red)
+                  ))),
                         child: const Text('Modify')),
                   ),
                   Container(
@@ -61,111 +81,109 @@ class _ModifierDeleteState extends State<ModifierDelete> {
                             isForModify = false;
                           });
                         },
+                        style: ButtonStyle(
+                           
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    // side:const BorderSide(color: Colors.red)
+                  )),
+                 
+                  ),
                         child: const Text("Delete")),
                   ),
                 ],
               ),
             ),
-            Container(
-              height: phoneHeight * 0.6,
-              child: Expanded(
-                  child: isForModify
-                      ? Form(
-                          child: Column(children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 30),
-                              child: TextFormField(
-                                onChanged: (value) =>
-                                    setState(() => productName = value),
-                                validator: (value) => value!.isEmpty
-                                    ? 'pleas the name of a product'
-                                    : null,
-                                decoration: InputDecoration(
-                                  labelText: productName,
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                      borderSide: const BorderSide(
-                                        width: 1,
-                                        // color: Colors.white,
-                                      )),
+            Flex(
+              direction: Axis.horizontal,
+              children: [
+                Expanded(
+                    child: isForModify
+                        ? Form(
+                            child: Column(children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 30),
+                                child: TextFormField(
+                                  onChanged: (value) =>
+                                      setState(() => productName = value),
+                                  validator: (value) => value!.isEmpty
+                                      ? 'pleas the name of a product'
+                                      : null,
+                                  decoration: InputDecoration(
+                                    hintText: productName,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 30),
-                              child: TextFormField(
-                                onChanged: (value) =>
-                                    setState(() => category = value),
-                                validator: (value) => value!.isEmpty
-                                    ? 'What is the category of the product'
-                                    : null,
-                                decoration: InputDecoration(
-                                  labelText: category,
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                      borderSide: const BorderSide(
-                                        width: 1,
-                                        // color: Colors.white,
-                                      )),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 30),
+                                child: TextFormField(
+                                  onChanged: (value) =>
+                                      setState(() => category = value),
+                                  validator: (value) => value!.isEmpty
+                                      ? 'What is the category of the product'
+                                      : null,
+                                  decoration: InputDecoration(
+                                    hintText: category,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 30),
-                              child: TextFormField(
-                                keyboardType: TextInputType.number,
-                                onChanged: (value) =>
-                                    setState(() => productName = value),
-                                validator: (value) => value!.isEmpty
-                                    ? 'What is the price of the product'
-                                    : null,
-                                decoration: InputDecoration(
-                                  labelText: price,
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                      borderSide: const BorderSide(
-                                        width: 1,
-                                        // color: Colors.white,
-                                      )),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 30),
+                                child: TextFormField(
+                                  keyboardType: TextInputType.number,
+                                  onChanged: (value) =>
+                                      setState(() => productName = value),
+                                  validator: (value) => value!.isEmpty
+                                      ? 'What is the price of the product'
+                                      : null,
+                                  decoration: InputDecoration(
+                                    hintText: price,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 30),
-                              child: TextFormField(
-                                onChanged: (value) =>
-                                    setState(() => quantity = value),
-                                validator: (value) => value!.isEmpty
-                                    ? 'What is the quantity for that price'
-                                    : null,
-                                decoration: InputDecoration(
-                                  labelText: quantity,
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                      borderSide: const BorderSide(
-                                        width: 1,
-                                        // color: Colors.white,
-                                      )),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 30),
+                                child: TextFormField(
+                                  onChanged: (value) =>
+                                      setState(() => quantity = value),
+                                  validator: (value) => value!.isEmpty
+                                      ? 'What is the quantity for that price'
+                                      : null,
+                                  decoration: InputDecoration(
+                                    hintText: quantity,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: ElevatedButton(
-                                  onPressed: () {
-                                    if (_formulare.currentState!.validate()) {
-                                      print('it is ok');
-                                    }
-                                  },
-                                  child: const Text("Modify")),
-                            )
-                          ]),
-                        )
-                      : const Text('data')),
+                              Container(
+                                width: 200,
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      print('good morning');
+                                      Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const Modifycomplet()));
+                                      /*if (_formulare.currentState!.validate()) {
+                                  
+                                  };*/
+                                    },
+                                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    // side:const BorderSide(color: Colors.red)
+                  ))),
+                                    child: const Text("Modify")),
+                              )
+                            ]),
+                          )
+                        : const Text('')),
+              ],
             )
           ],
         ),

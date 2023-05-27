@@ -9,6 +9,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lookam/vendor/home/sub_home/add_product.dart';
 import 'package:lookam/vendor/home/sub_home/modifier_delete.dart';
+import 'package:lookam/vendor/home/sub_home/sub_modefierDeleter/search.dart';
 
 void main() {
   runApp(const MyApp());

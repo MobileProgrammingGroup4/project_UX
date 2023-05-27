@@ -95,9 +95,9 @@ class _SignupState extends State<Signup> {
                         value!.isEmpty ? 'pleas enter your name' : null,
                     decoration: InputDecoration(
                       labelText: 'Enter your Name',
-                     // labelStyle: const TextStyle(
-                     //   color: Colors.white,b
-                     // ),
+                      labelStyle: const TextStyle(
+                        color: Colors.white,
+                      ),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: const BorderSide(

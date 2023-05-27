@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lookam/vendor/home/sub_home/add_product.dart';
+import 'package:lookam/vendor/home/sub_home/modifier_delete.dart';
+import 'package:lookam/vendor/setting/setting.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -125,7 +128,100 @@ class _HomeState extends State<Home> {
     var phoneWidth = mediaQuery.size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(''),
+        backgroundColor: Color.fromARGB(255, 53, 144, 187),
+        toolbarHeight: 130,
+        automaticallyImplyLeading: false,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+                onPressed: () {
+                  showModalBottomSheet<void>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Container(
+                          height: 200,
+                          //color: Colors.amber,
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(40),
+                                  topRight: Radius.circular(40))),
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                
+                                Row(
+                                  children: [
+                                    const Icon(Icons.add),
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const AddProduct()));
+                                        },
+                                        child: const Text('Add a new product')),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(Icons.settings),
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const Setting()));
+                                        },
+                                        child: const Text('Settings'))
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+                },
+                icon: const Icon(Icons.menu,
+                size: 35,
+                )),
+            Container(
+              width: phoneWidth * 0.3,
+              height: phoneHeight * 0.09,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(60)),
+                  image: DecorationImage(
+                      image: AssetImage(
+                    'image/market.jpeg',
+                  ))),
+            )
+          ],
+        ),
+       const Padding(padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child:  Text('DASHBOARD',
+        style: TextStyle(
+          fontSize: 20,
+        ),
+        ),
+        ),
+
+        const Padding(padding: EdgeInsets.symmetric(horizontal: 10,),
+        child:  Text('lorem nknei woldkr ieeeedkdke',
+        style: TextStyle(
+          fontSize: 14,
+        ),
+        ),
+        ),
+          ],
+        ),
         elevation: 0,
       ),
       body: SingleChildScrollView(
@@ -136,7 +232,18 @@ class _HomeState extends State<Home> {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20))),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Text(
+                  "My Store",
+                  style: TextStyle(
+                    fontSize: 20,
+                    // fontWeight: F
+                  ),
+                ),
+              ),
               GridView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -201,6 +308,11 @@ class _HomeState extends State<Home> {
                                 ['price']['quantity']['avatar'].toString();*/
 
                             // print(selected);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ModifierDelete()));
                             print(product[index]['name']);
                           },
                           child: Container(
