@@ -9,3 +9,5 @@ GUEGUIM SONNA ZITHA UNELLE	FE20A045
 MAKONDI THIERRY JUNIOR	FE20A062
 NGANKEP FANDIO ORDY BENIDI	FE20A075
 HIEGA EMMANUEL JOEL	FE20A050
+
+the code of our project is on the master branch. it is a flutter project and is mainly front-end
