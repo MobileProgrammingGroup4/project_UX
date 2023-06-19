@@ -1,28 +1,49 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:lookam/customer/home/sub_home/farm_product/vegetable.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-import 'home/sub_home/Clothes/chaussure.dart';
-
-
-class SelectProduct extends StatefulWidget {
-  const SelectProduct({Key? key}) : super(key: key);
+class VegaSelect extends StatefulWidget {
+  
+  const VegaSelect({ super.key });
 
   @override
-  State<SelectProduct> createState() => _SelectProductState();
+  State<VegaSelect> createState() => _VegaSelectState();
 }
 
-class _SelectProductState extends State<SelectProduct> {
+class _VegaSelectState extends State<VegaSelect> {
+void launchWhatsApp({
+    required int phone,
+    required String message,
+  }) async {
+    String url() {
+      if (Platform.isAndroid) {
+        // add the [https]
+        return "https://wa.me/$phone/?text=${Uri.parse(message)}"; // new line
+      } else {
+        // add the [https]
+        return "https://api.whatsapp.com/send?phone=$phone=${Uri.parse(message)}"; // new line
+      }
+    }
 
-  @override
-  
-  Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context);
+    if (await canLaunch(url())) {
+      await launch(url());
+    } else {
+      throw 'Could not launch ${url()}';
+    }
+  }
+
+   @override
+   Widget build(BuildContext context) {
+     var mediaQuery = MediaQuery.of(context);
     var phoneHeight = mediaQuery.size.height;
     var phoneWidth = mediaQuery.size.width;
 
-      Product product = ModalRoute.of(context)!.settings.arguments as Product;
-    return Scaffold(
+      Vega product = ModalRoute.of(context)!.settings.arguments as Vega;
+       return Scaffold(
       appBar: AppBar(
-       centerTitle: true,
+        centerTitle: true,
         title: const Text('Poduct details'),
       ),
       body: Center(
@@ -88,7 +109,53 @@ class _SelectProductState extends State<SelectProduct> {
                 fontWeight: FontWeight.w600,
               ),
               ),
+            ),
+
+            Row(
+              children: [
+                const  Padding(
+              padding:  EdgeInsets.all(15),
+              child: Text("contaoct vendor",
+              style: TextStyle(
+                fontSize: 19,
+                
+              ),
+              ),
+            ),
+
+           Container(
+            width: phoneWidth*0.5,
+            child:  GestureDetector(
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              width: phoneWidth * 0.9,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                  color: Colors.green),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  ImageIcon(
+                    AssetImage('image/whatsapp.png'),
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                  Text(
+                    "whatsapp",
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  )
+                ],
+              ),
+            ),
+            onTap: () {
+              launchWhatsApp(phone: 237682608736, message: 'Hello');
+            },
+          ),
+           )
+              ],
             )
+
+          
           ],
         ),
         )

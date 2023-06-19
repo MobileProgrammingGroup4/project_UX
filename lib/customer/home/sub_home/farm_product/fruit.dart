@@ -1,17 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Fruit extends StatefulWidget {
-
-  const Fruit({ Key? key }) : super(key: key);
-
-  @override
-  State<Fruit> createState() => _FruitState();
-}
-
-class _FruitState extends State<Fruit> {
-bool hasBeenTapped = false;
-
-   List<Map> fruit = [
+List<Map> fruit = [
     {
       "name": "Carrot",
       "category": "Vegetable",
@@ -101,6 +90,34 @@ bool hasBeenTapped = false;
       "avatar": "image/market.jpeg"
     },
   ];
+
+  class Product {
+  String name;
+  var imageUrl;
+  String price;
+  String description;
+  String vendorname;
+
+  Product({
+    required this.name,
+    required this.imageUrl,
+    required this.price,
+    required this.description,
+    required this.vendorname,
+  });
+}
+class Fruit extends StatefulWidget {
+
+  const Fruit({ Key? key }) : super(key: key);
+
+  @override
+  State<Fruit> createState() => _FruitState();
+}
+
+class _FruitState extends State<Fruit> {
+bool hasBeenTapped = false;
+
+   
 
   
 
@@ -210,6 +227,17 @@ bool hasBeenTapped = false;
 
                             // print(selected);
                             print(fruit[index]['name']);
+                            Navigator.pushNamed(
+      context,
+      '/select_fruit',
+      arguments: Product(
+        name: fruit[index]['name'],
+    imageUrl: fruit[index]['avatar'],
+    price: fruit[index]['price'].toString(),
+    description: fruit[index]['category'],
+    vendorname: fruit[index]['vendor'],
+      ),
+    );
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),

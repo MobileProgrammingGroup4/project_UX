@@ -1,18 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lookam/customer/home/sub_home/farm_product/vegetable.dart';
 
-class Vetements extends StatefulWidget {
-
-  const Vetements({ Key? key }) : super(key: key);
-
-  @override
-  State<Vetements> createState() => _VetementsState();
-}
-
-class _VetementsState extends State<Vetements> {
-
-   bool hasBeenTapped = false;
-
-   List<Map> clothes = [
+List<Map> clothes = [
     {
       "name": "Air force 1",
       "category": "clothes",
@@ -135,6 +124,35 @@ class _VetementsState extends State<Vetements> {
     },
   ];
 
+  class Habit {
+  String name;
+  var imageUrl;
+  String price;
+  String description;
+  String vendorname;
+
+  Habit({
+    required this.name,
+    required this.imageUrl,
+    required this.price,
+    required this.description,
+    required this.vendorname,
+  });
+}
+class Vetements extends StatefulWidget {
+
+  const Vetements({ Key? key }) : super(key: key);
+
+  @override
+  State<Vetements> createState() => _VetementsState();
+}
+
+class _VetementsState extends State<Vetements> {
+
+   bool hasBeenTapped = false;
+
+   
+
   
 
    @override
@@ -243,6 +261,17 @@ class _VetementsState extends State<Vetements> {
 
                             // print(selected);
                             print(clothes[index]['name']);
+                            Navigator.pushNamed(
+      context,
+      '/select_clothes',
+      arguments: Habit(
+        name: clothes[index]['name'],
+    imageUrl: clothes[index]['avatar'],
+    price: clothes[index]['price'].toString(),
+    description: clothes[index]['category'],
+    vendorname: clothes[index]['vendor'],
+      ),
+    );
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),

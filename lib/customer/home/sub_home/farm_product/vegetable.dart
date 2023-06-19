@@ -1,18 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Vegetable extends StatefulWidget {
-
-  const Vegetable({ Key? key }) : super(key: key);
-
-  @override
-  State<Vegetable> createState() => _VegetableState();
-}
-
-class _VegetableState extends State<Vegetable> {
-
-  bool hasBeenTapped = false;
-
-   List<Map> farmproduct = [
+List<Map> farmproduct = [
     {
       "name": "Carrot",
       "category": "Vegetable",
@@ -103,7 +91,34 @@ class _VegetableState extends State<Vegetable> {
     },
   ];
 
-  
+
+  class Vega {
+  String name;
+  var imageUrl;
+  String price;
+  String description;
+  String vendorname;
+
+  Vega({
+    required this.name,
+    required this.imageUrl,
+    required this.price,
+    required this.description,
+    required this.vendorname,
+  });
+}
+
+class Vegetable extends StatefulWidget {
+
+  const Vegetable({ Key? key }) : super(key: key);
+
+  @override
+  State<Vegetable> createState() => _VegetableState();
+}
+
+class _VegetableState extends State<Vegetable> {
+
+  bool hasBeenTapped = false;
 
    @override
    Widget build(BuildContext context) {
@@ -211,6 +226,17 @@ class _VegetableState extends State<Vegetable> {
 
                             // print(selected);
                             print(farmproduct[index]['name']);
+                            Navigator.pushNamed(
+      context,
+      '/select_vega',
+      arguments: Vega(
+        name: farmproduct[index]['name'],
+    imageUrl: farmproduct[index]['avatar'],
+    price: farmproduct[index]['price'].toString(),
+    description: farmproduct[index]['category'],
+    vendorname: farmproduct[index]['vendor'],
+      ),
+    );
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),

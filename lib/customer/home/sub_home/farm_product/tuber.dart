@@ -1,18 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Tuber extends StatefulWidget {
-
-  const Tuber({ Key? key }) : super(key: key);
-
-  @override
-  State<Tuber> createState() => _TuberState();
-}
-
-class _TuberState extends State<Tuber> {
-
-  bool hasBeenTapped = false;
-
-   List<Map> tuber = [
+List<Map> tuber = [
     {
       "name": "Carrot",
       "category": "Vegetable",
@@ -102,6 +90,35 @@ class _TuberState extends State<Tuber> {
       "avatar": "image/pomme.jpeg"
     },
   ];
+
+  class Product {
+  String name;
+  var imageUrl;
+  String price;
+  String description;
+  String vendorname;
+
+  Product({
+    required this.name,
+    required this.imageUrl,
+    required this.price,
+    required this.description,
+    required this.vendorname,
+  });
+}
+class Tuber extends StatefulWidget {
+
+  const Tuber({ Key? key }) : super(key: key);
+
+  @override
+  State<Tuber> createState() => _TuberState();
+}
+
+class _TuberState extends State<Tuber> {
+
+  bool hasBeenTapped = false;
+
+   
 
   
 
@@ -211,6 +228,17 @@ class _TuberState extends State<Tuber> {
 
                             // print(selected);
                             print(tuber[index]['name']);
+                            Navigator.pushNamed(
+      context,
+      '/select_tuber',
+      arguments: Product(
+        name: tuber[index]['name'],
+    imageUrl: tuber[index]['avatar'],
+    price: tuber[index]['price'].toString(),
+    description: tuber[index]['category'],
+    vendorname: tuber[index]['vendor'],
+      ),
+    );
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
